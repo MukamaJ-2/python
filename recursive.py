@@ -12,5 +12,5 @@ p = Person("My name is musinguzi Marcellinas",
             "aged 23",
             "working as a software developer in Silicon Valley",
             "and i persued a Bachelors of Science in Computer Science",
-             "Uganda Christian University")
+             "Uganda Christian University UCU")
 p.printname()
