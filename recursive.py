@@ -1,16 +1,25 @@
-class Person:
-    def __init__(self, full_names, age, work_place, level_of_education, university_you_went_to):
-        self.your_names = full_names
-        self.your_age = age
-        self.your_work_place = work_place
-        self.your_level_of_education = level_of_education
-        self.your_university = university_you_went_to
-    def printname(self):
-        print(self.your_names, self.your_age, self.your_work_place, self.your_level_of_education, self.your_university)
+import cv2
+from pyzbar.pyzbar import decode
 
-p = Person("My name is musinguzi Marcellinas",
-            "aged 23",
-            "working as a software developer in Silicon Valley",
-            "and i persued a Bachelors of Science in Computer Science",
-             "Uganda Christian University UCU")
-p.printname()
+def decode_qr(image_path):
+    # Read the image using OpenCV
+    img = cv2.imread(image_path)
+    
+    # Check if the image was loaded successfully
+    if img is None:
+        print(f"Error: Could not read image from {image_path}. Please check the file path.")
+        return
+    
+    # Decode the QR code using pyzbar
+    decoded_objects = decode(img)
+    
+    if not decoded_objects:
+        print("No QR code found in the image.")
+        return
+
+    for obj in decoded_objects:
+        # Print the decoded data
+        print("QR Code Data:", obj.data.decode("utf-8"))
+
+# Replace 'your_image.png' with the path to your QR code image
+decode_qr('your_image.png')
